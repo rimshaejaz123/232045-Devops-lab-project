@@ -1,0 +1,2 @@
+Dintpkt,Sintpkt,Sjit,ackdat,ct_dst_sport_ltm,ct_dst_src_ltm,ct_src_dport_ltm,ct_srv_dst,ct_srv_src,ct_state_ttl,dbytes,djit,dload,dloss,dmeansz,dur,rate,sbytes,sload,smeansz,sttl,synack,tcprtt,proto,service,state
+0.0,0.011,0.0,0.0,1,2,1,2,2,2,0,0.0,0.0,0,0,1.1e-05,90909.0902,496,180363632.0,248,254,0.0,0.0,udp,-,INT

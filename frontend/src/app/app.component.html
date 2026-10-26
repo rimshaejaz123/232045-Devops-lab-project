@@ -1,0 +1,48 @@
+@if (isDemo) {
+  <div class="banner">Static GitHub Pages Demonstration - Local Flask backend required for live inference.</div>
+}
+
+<main>
+  <h1>Network Attack Classifier</h1>
+  <p class="sub">UNSW-NB15 &middot; MLP (23 numeric + 3 categorical features) &middot; Flask + Angular</p>
+
+  <form (ngSubmit)="predict()">
+    <div class="grid">
+      @for (f of numericFields; track f) {
+        <label>{{ f }}
+          <input type="number" step="any" [name]="f" [(ngModel)]="form[f]" required />
+        </label>
+      }
+      @for (c of categoricalFields; track c.name) {
+        <label>{{ c.name }}
+          <input type="text" [name]="c.name" [(ngModel)]="form[c.name]" [attr.list]="'dl-' + c.name" required />
+          <datalist [id]="'dl-' + c.name">
+            @for (o of c.options; track o) { <option [value]="o"></option> }
+          </datalist>
+        </label>
+      }
+    </div>
+    <div class="actions">
+      <button type="submit" [disabled]="loading">{{ loading ? 'Predicting...' : 'Predict' }}</button>
+      <button type="button" class="secondary" (click)="loadSample()">Load sample</button>
+    </div>
+  </form>
+
+  <section class="card">
+    <h2>Result</h2>
+    @if (result) {
+      <p class="pred">{{ result.prediction }} <span>({{ result.confidence * 100 | number: '1.1-1' }}%)</span></p>
+      @for (p of result.probabilities | keyvalue; track p.key) {
+        <div class="bar-row">
+          <span>{{ p.key }}</span>
+          <div class="bar"><div [style.width.%]="p.value * 100"></div></div>
+          <span>{{ p.value * 100 | number: '1.1-1' }}%</span>
+        </div>
+      }
+    } @else if (error) {
+      <p class="err">{{ error }}</p>
+    } @else {
+      <p class="muted">Fill the form and press Predict. The result will appear here.</p>
+    }
+  </section>
+</main>
