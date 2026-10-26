@@ -33,7 +33,7 @@ jobs:
       - name: Build Angular App
         working-directory: ./frontend
         # Yeh base-href aapke repo ke naam ke hisaab se hai
-        run: npx ng build --configuration production --base-href /Devops-lab-project/
+        run: npx ng build --configuration production --base-href /232045-Devops-lab-project/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
